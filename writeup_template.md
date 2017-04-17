@@ -9,7 +9,7 @@
 [v0]: ./images/v0.png "v0"
 [v1]: ./images/v1.png "v1"
 [vgg16]: ./images/vgg16.png "vgg16"
-[all_5]: ./images/images/from_internet/all_5.png "internet_images"
+[all_7]: ./images/images/from_internet/all_7.png "internet_images"
 
 
 # **Traffic Sign Recognition** 
@@ -110,9 +110,9 @@ I have summarized below the performance of the different experiments that were d
 ### Performance on the test data
 
 ### Performance on new images from internet
-The model is able to predict 3 out 5 new images.
+The best model is able to predict 6 out 7 new images.
 
-![][blur]
+![][all_7]
 
 
 ## Visualizing Activation Maps
