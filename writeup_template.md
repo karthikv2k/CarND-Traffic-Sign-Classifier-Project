@@ -61,17 +61,27 @@ In order to reduce the variance, I tried few data augmentation techniques which 
 ### Grayscale
 Converting the grayscale is to give the model less information in hopes of decreasing the variance. Additionally, it is faster to train as the input data size is reduced by 1/3rd.
 
+![][grayscale]
+
 ### Adding Noise
 Adding some random noise will simulate some real-world situation and reduces variance.
+
+![][noise]
 
 ### Adding Rotation
 The traffic signs can have some rotations as the camera angle varies from sample to sample. Therefore, artificially introducing rotations will make the model generalize more.
 
+![][rotation]
+
 ### Adding Shifts
 Similar to rotations, the signs need not to be in the center of the image so having multiple examples where signs are in random places in the image will make the model generalize more.
 
+![][shift]
+
 ### Adding Blur
 The images can have varying amount of blur depending on the camera settings so having varying amount of blur decreases the variance of the model.
+
+![][blur]
 
 ## Hyperparameters
 
