@@ -6,6 +6,10 @@
 [rotation]: ./images/rotation.png "rotation"
 [shift]: ./images/shift.png "shift"
 [blur]: ./images/blur.png "blur"
+[v0]: ./images/v0.png "v0"
+[v1]: ./images/v1.png "v1"
+[vgg16]: ./images/vgg16.png "vgg16"
+[all_5]: ./images/images/from_internet/all_5.png "internet_images"
 
 
 # **Traffic Sign Recognition** 
@@ -15,7 +19,7 @@ The aim of the project is to classify traffic signs using a deep learning model.
 ![][all_signs]
 
 ## TL;DR
-I viewed this problem as optimizing two parameters, bias and variance of the model. Bias can be viewed as the training error and variance as the difference in training and test error. To get better bias, first I looked at building better networks iteratively. Since the speed of iteration is important, I ran short experiments focused on one aspect of the model to find which things work and which won't. I started with a basic CNN model that was built for MNIST dataset. Then, I iteratively improved the bias (training error) from 93% to ~98% by adding extra conv and fully connected layers. At this stage, I wanted to see if a pertained model would improve the bias. I took a pertained VGG16 model and ran experiments with varying numbers of layers frozen. Then I trained both the models for longer time till I got to the point of zero training error. The test error was 97+%. To get better variance I two aspects: increasing the regularization in the models and data augmentation. First, to start with the simpler one, I tweaked dropout parameters to get test error to about 98%. Then I added data augmentation methods like blurring, shifting, rotating, and adding noise. Finally, I was able to get 98.9% test error for my best model. A lot of my time was spent on getting stuff to work like getting GPU version of the Tensorflow to work and dealing with some memory issues with python/docker.
+I viewed this problem as optimizing two parameters, bias and variance of the model. Bias can be viewed as the training error and variance as the difference in training and test error. To get better bias, first I looked at building better networks iteratively. Since the speed of iteration is important, I ran short experiments focused on one aspect of the model to find which things work and which won't. I started with a basic CNN model that was built for MNIST dataset. Then, I iteratively improved the bias (training error) from 93% to ~98% by adding extra conv and fully connected layers. At this stage, I wanted to see if a pertained model would improve the bias. I took a pertained VGG16 model and ran experiments with varying numbers of layers frozen. Then I trained both the models for longer time till I got to the point of zero training error. The test error was 97+%. To get better variance I two aspects: increasing the regularization in the models and data augmentation. First, to start with the simpler one, I tweaked dropout parameters to get test error to about 98%. Then I added data augmentation methods like blurring, shifting, rotating, and adding noise. Finally, I was able to get 98.6% test error for my best model. A lot of my time was spent on getting stuff to work like getting GPU version of the Tensorflow to work and dealing with some memory issues with python/docker.
 
 ---
 
@@ -45,8 +49,12 @@ I started with the network described here and iteratively improved by adding lay
 #### V0 
 V0 of the model is the same network described here without any changes. This network had a lot of bias so not a good choice.
 
+![][v0]
+
 #### V1
 I added a conv, max pool, dense, and dropout layers with same configuration to layers in V0. By adding one more conv layer, the #parameters of the model decreased from 1.4M+ to ~350K, which is good for increasing the performance as the extra conv layer reduces bias.
+
+![][v1]
 
 #### V2
 In order to reduce variance from V1, I increased dropout rate for V2 from 0.25 to 0.5. With this change, I was able to get much better variance and bias compared to other versions.
@@ -54,6 +62,9 @@ In order to reduce variance from V1, I increased dropout rate for V2 from 0.25 t
 
 #### VGG16 Model
 I took a pertained VGG16 model with ImageNet models without the top dense layers. By not including the top dense layer, I have the flexibility of using input images of lower resolution than standard ImageNet resolution of 224x224. However, because of the filter size the minimum image size we can use is 48x48. I added two dense layers of size 512 at the top and also a softmax layer for the output. I tried many experiments with various number of layers frozen and got best result with no layers frozen. I didn't get to try the model with higher image resolution because of some technical issues and also didn't try with random initial weights instead of ImageNet weights.
+
+![][vgg16]
+
 
 ## Data Augmentation
 In order to reduce the variance, I tried few data augmentation techniques which are described below.
@@ -92,8 +103,17 @@ The main hyperparameter that had most impact, as expected, is the training time/
 The batch size choice was mainly influenced by the memory capacity of the GPU and CPU. Varying the batch size didn't have much of an impact on the performance. As expected, high batch size increased the learning rate.
 
 ### Optimizer
+
 ## Performance Evaluation
-I have summarized below the performance of the different experiments that were described above. Apart, from the validation and test dataset we had to find at 5 images in the internet to test our models. I found 8 images of varying resolutions and aspect ratio to test the models. The results of those are also captured below.
+I have summarized below the performance of the different experiments that were described above. Apart, from the test dataset we had to find 5 images in the internet to test our models. I found 5 images of varying resolutions and aspect ratio to test the models. The results of those are also captured below.
+
+### Performance on the test data
+
+### Performance on new images from internet
+The model is able to predict 3 out 5 new images.
+
+![][blur]
+
 
 ## Visualizing Activation Maps
 I didn't get good insights on visualizing first two conv layers of my model. I didn't spend much on this part.
