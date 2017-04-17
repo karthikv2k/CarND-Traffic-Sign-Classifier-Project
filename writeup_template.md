@@ -9,7 +9,7 @@
 [v0]: ./images/v0.png "v0"
 [v1]: ./images/v1.png "v1"
 [vgg16]: ./images/vgg16.png "vgg16"
-[all_7]: ./images/images/from_internet/all_7.png "internet_images"
+[all_7]: ./images/from_internet/all_7.png "internet_images"
 
 
 # **Traffic Sign Recognition** 
