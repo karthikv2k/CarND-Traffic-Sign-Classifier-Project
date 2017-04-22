@@ -121,7 +121,7 @@ Here are the 7 images taken from the internet.
 
 ![][all_7]
 
-Here, these images are compared to few examples of same labels from test dataset. We can clearly see that the images from the internet are pretty different from the ones in test dataset. The #5 image is pretty much a different sign, probably that's why the model couldn't not classify it properly. 
+Here, these images are compared to few examples of same labels from test dataset. We can clearly see that the images from the internet are pretty different from the ones in test dataset. The #5 image is pretty much a different sign, probably that's why the model couldn't not classify it properly. The images have very bright colors and since the originals were of different aspect ratio, the resized ones have signs stretched and squeezed making classification difficult. If I included shear preprocessing in the training, it would have helped.
 
 ![][all_7_compared]
 
