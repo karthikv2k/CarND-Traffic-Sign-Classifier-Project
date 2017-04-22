@@ -129,12 +129,12 @@ Looking at the performance of top models on the internet images, the v1 model th
 
 ![][perf_internet]
 
-The below figure shows the top 5 class predicted probabilities for each image.
+The below figure shows the top 5 class predicted probabilities for each image. First 3 are very high confident predictions and the last 2 are much less confident predictions.
 
 ![][predicted_prob]
 
 
-## Visualizing Activation Maps
+## Visualizing Conv Filters
 I didn't get good insights on visualizing first two conv layers of my model. I didn't spend much time on this part.
 
 Conv layer #1
