@@ -10,7 +10,12 @@
 [v1]: ./images/v1.png "v1"
 [vgg16]: ./images/vgg16.png "vgg16"
 [all_7]: ./images/from_internet/all_7.png "internet_images"
-
+[perf_test]: ./images/performance_test_data.png "performance_test_data"
+[perf_internet]: ./images/performance_internet.png "performance_internet"
+[all_7_compared]: ./images/from_internet/all_7_compared.png "all_7_compared"
+[predicted_prob]: ./images/from_internet/predicted_prob.png "predicted_prob"
+[conv_layer1]: ./images/conv_layer1.png "conv_layer1"
+[conv_layer2]: ./images/conv_layer2.png "conv_layer2"
 
 # **Traffic Sign Recognition** 
 
@@ -97,26 +102,44 @@ The images can have varying amount of blur depending on the camera settings so h
 ## Hyperparameters
 
 ### Training Time
-The main hyperparameter that had most impact, as expected, is the training time/#epochs. What I have seen from my experiments is that, even a not so good model (for e.g. V0) trained for long time (e.g. 1K epochs) had bias and variance comparable to better models like V2 that is trained for 100 epochs. Other way of seeing this result is, good models had faster learning rate than bad models.
+The main hyperparameter that had most impact, as expected, is the training time (#epochs). What I have seen from my experiments is that, even a not so good model (for e.g. V0) trained for long time (e.g. 1K epochs) had bias and variance comparable to better models like V2 that is trained for 100 epochs. Other way of seeing this result is, good models are faster to train than bad models.
 
 ### Batch Size
-The batch size choice was mainly influenced by the memory capacity of the GPU and CPU. Varying the batch size didn't have much of an impact on the performance. As expected, high batch size increased the learning rate.
+The batch size choice was mainly influenced by the memory capacity of the GPU and CPU. Varying the batch size didn't have much of an impact on the performance. As expected, high batch size reduced training time as it is more efficient to do batch operations in the GPU.
 
 ### Optimizer
+I tested two optimizers, Adam and Adadelta. Adam seems to be more fast in getting to the optimal error rate but both gave more or less similar results finally.
 
 ## Performance Evaluation
-I have summarized below the performance of the different experiments that were described above. Apart, from the test dataset we had to find 5 images in the internet to test our models. I found 5 images of varying resolutions and aspect ratio to test the models. The results of those are also captured below.
+I have summarized below the performance of top 6 models from the different experiments that were described above. Apart from the test dataset, we had to find 5 images in the internet to test our models. I found 7 images of varying resolutions and aspect ratio to test the models. The results of those are also captured below.
 
 ### Performance on the test data
+![][perf_test]
 
 ### Performance on new images from internet
-The best model is able to predict 6 out 7 new images.
+Here are the 7 images taken from the internet.
 
 ![][all_7]
 
+Here, these images are compared to few examples of same labels from test dataset.
+
+![][all_7_compared]
+
+Looking at the performance of top models on the internet images, the v1 model that is trained on augmented images comes as the winner, which is able to predict 6 out 7 new images. The below figure shows the top 5 class predicted probabilities for each image.
+
+![][predicted_prob]
+
 
 ## Visualizing Activation Maps
-I didn't get good insights on visualizing first two conv layers of my model. I didn't spend much on this part.
+I didn't get good insights on visualizing first two conv layers of my model. I didn't spend much time on this part.
+
+Conv layer #1
+
+![][conv_layer1]
+
+Conv layer #2
+
+![][conv_layer2]
 
 ## Lessons Learned
 1. Running long running jobs in Jupyter is a bad idea. Connection drops and timeouts really makes things difficult to monitor the progress of the job.
